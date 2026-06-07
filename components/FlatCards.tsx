@@ -1,20 +1,64 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
+const DATA = [
+  {
+    id: "One",
+    text: "Red"
+  },
+  {
+    id: "Two",
+    text: "Yellow"
+  },
+  {
+    id: "Three",
+    text: "Blue"
+  },
+  {
+    id: "Four",
+    text: "Red"
+  },
+  {
+    id: "Five",
+    text: "Yellow"
+  },
+  {
+    id: "Six",
+    text: "Blue"
+  },
+];
+
+type ItemProps = { text: string, backgroundColor: string }
+
+const Item = ({ text, backgroundColor }: ItemProps) => (
+  <View style={[styles.card, { backgroundColor }]}>
+    <Text style={styles.cardText}>
+      {text}
+    </Text>
+  </View>
+);
+
 export default function FlatCards() {
+  const colors = ["red", "yellow", "blue"];
+
   return (
     <View>
       <Text style={styles.headingStyles}>FlatCards</Text>
-      <ScrollView horizontal>
-        <View style={styles.container}>
-          <View style={[styles.card, styles.cardOne]}><Text>Red</Text></View>
-          <View style={[styles.card, styles.cardTwo]}><Text>Yellow</Text></View>
-          <View style={[styles.card, styles.cardThree]}><Text>Blue</Text></View>
-          <View style={[styles.card, styles.cardOne]}><Text>Red</Text></View>
-          <View style={[styles.card, styles.cardTwo]}><Text>Yellow</Text></View>
-          <View style={[styles.card, styles.cardThree]}><Text>Blue</Text></View>
-        </View>
-      </ScrollView>
+      <View style={styles.container}>
+        <FlatList
+          data={DATA}
+          renderItem={({ item, index }) => {
+            const itemColor = colors[index % colors.length];
+            return (
+              <Item text={item.text}
+                backgroundColor={itemColor}
+              />)
+          }}
+          keyExtractor={item => item.id}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
     </View>
   )
 }
@@ -24,16 +68,12 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: 'bold',
     paddingHorizontal: 8,
+    marginTop: 20,
   },
   container: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     padding: 8,
   },
   card: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     width: 100,
@@ -41,13 +81,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     margin: 8,
   },
-  cardOne: {
-    backgroundColor: 'red',
-  },
-  cardTwo: {
-    backgroundColor: 'yellow',
-  },
-  cardThree: {
-    backgroundColor: 'blue',
-  },
+  cardText: {
+    color: 'black',
+    fontWeight: 'bold',
+  }
 })
