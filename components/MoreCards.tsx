@@ -1,24 +1,70 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { FlatList, Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+
+const DATA = [
+    {
+        id: '1',
+        imagesrc: require('../images/babycow.jpg'),
+    },
+    {
+        id: '2',
+        imagesrc: require('../images/kitten2.jpg'),
+    },
+    {
+        id: '3',
+        imagesrc: require('../images/tikku.png'),
+    },
+    {
+        id: '4',
+        imagesrc: require('../images/crying_kitten.jpg'),
+    },
+    {
+        id: '5',
+        imagesrc: require('../images/kitten.png'),
+    },
+    {
+        id: '6',
+        imagesrc: require('../images/silly_catto.jpg'),
+    },
+    {
+        id: '7',
+        imagesrc: require('../images/banana.jpg'),
+    },
+    {
+        id: '8',
+        imagesrc: require('../images/pablo.png'),
+    },
+];
+
+type ImageData = { imagesrc: ImageSourcePropType };
+
+const Images = ({ imagesrc }: ImageData) => (
+    <Image
+        source={imagesrc}
+        style={styles.card}
+        resizeMode='cover'
+    />
+);
 
 export default function MoreCards() {
     return (
         <View>
             <Text style={styles.headingStyles}>MoreCards</Text>
             <View style={styles.container}>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    <Image source={require('../images/babycow.jpg')} style={styles.card} resizeMode='cover' />
-                    <Image source={require('../images/kitten2.jpg')} style={styles.card} resizeMode='cover' />
-                    <Image source={require('../images/tikku.png')} style={styles.card} resizeMode='cover' />
-                    <Image source={require('../images/crying_kitten.jpg')} style={styles.card} resizeMode='cover' />
-                    <Image source={require('../images/kitten.png')} style={styles.card} resizeMode='cover' />
-                    <Image source={require('../images/silly_catto.jpg')} style={styles.card} resizeMode='cover' />
-                    <Image source={require('../images/banana.jpg')} style={styles.card} resizeMode='cover' />
-                    <Image source={require('../images/pablo.png')} style={styles.card} resizeMode='cover' />
-                </ScrollView>
+                <FlatList
+                    data={DATA}
+                    renderItem={({ item }) => {
+                        return (
+                            <Images imagesrc={item.imagesrc} />
+                        )
+                    }}
+                    keyExtractor={item => item.id}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                />
             </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -36,5 +82,5 @@ const styles = StyleSheet.create({
         width: 100,
         margin: 8,
         borderRadius: 8,
-    }
-})
+    },
+});
