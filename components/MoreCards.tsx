@@ -36,15 +36,21 @@ const DATA = [
     },
 ];
 
-type ImageData = { imagesrc: ImageSourcePropType };
+type ImageDataType = { imagesrc: ImageSourcePropType };
 
-const Images = ({ imagesrc }: ImageData) => (
+const Images = ({ imagesrc }: ImageDataType) => (
     <Image
         source={imagesrc}
         style={styles.card}
         resizeMode='cover'
     />
 );
+
+type CardItemType = { id: string, imagesrc: ImageSourcePropType }
+
+const renderItem = ({ item }: { item: CardItemType }) => (
+    <Images imagesrc={item.imagesrc} />
+)
 
 export default function MoreCards() {
     return (
@@ -53,11 +59,7 @@ export default function MoreCards() {
             <View style={styles.container}>
                 <FlatList
                     data={DATA}
-                    renderItem={({ item }) => {
-                        return (
-                            <Images imagesrc={item.imagesrc} />
-                        )
-                    }}
+                    renderItem={renderItem}
                     keyExtractor={item => item.id}
                     horizontal
                     showsHorizontalScrollIndicator={false}
