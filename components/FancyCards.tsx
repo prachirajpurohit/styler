@@ -1,7 +1,7 @@
 import { Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function FancyCards({imageSrc}: {imageSrc: ImageSourcePropType}) {
+export default function FancyCards({ imageSrc }: { imageSrc: ImageSourcePropType }) {
     return (
         <View>
             <Text style={styles.headingText}>Trendy Places</Text>
