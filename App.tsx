@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import FlatCards from './components/FlatCards'
 import MoreCards from './components/MoreCards'
 import FancyCards from './components/FancyCards'
+import ActionCard from './components/ActionCard'
 
 const App = () => {
   return (
@@ -11,9 +12,10 @@ const App = () => {
       <ScrollView>
         <FlatCards />
         <MoreCards />
-        <FancyCards />
-        <FancyCards />
-        <FancyCards />
+        <ActionCard />
+        <FancyCards imageSrc={require('./images/crying_kitten.jpg')} />
+        <FancyCards imageSrc={require('./images/banana.jpg')} />
+        <FancyCards imageSrc={require('./images/babycow.jpg')} />
       </ScrollView>
     </SafeAreaView>
   )

@@ -1,12 +1,12 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function FancyCards() {
+export default function FancyCards({imageSrc}: {imageSrc: ImageSourcePropType}) {
     return (
         <View>
             <Text style={styles.headingText}>Trendy Places</Text>
             <View style={[styles.card, styles.cardElevated]}>
-                <Image source={require("../images/babycow.jpg")} style={styles.cardImage}
+                <Image source={imageSrc} style={styles.cardImage}
                 />
                 <View style={styles.cardBody}>
                     <Text style={styles.cardTitle}>title</Text>
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         borderTopLeftRadius: 12,
         borderTopRightRadius: 12,
+        resizeMode: 'stretch',
     },
     cardBody: {
         flex: 1,
