@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     },
     card: {
         width: 350,
-        height: 360,
+        height: 400,
         borderRadius: 6,
         marginVertical: 12,
         marginHorizontal: 16,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
     cardImage: {
-        height: 180,
+        height: 220,
         width: 350,
         resizeMode: 'stretch',
     },
